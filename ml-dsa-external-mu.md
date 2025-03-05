@@ -99,7 +99,7 @@ sequenceDiagram
 
 # FIPS 204 IETF ExternalMu ML-DSA
 
-IETF variant of ML-DSA using externalMu using flow documented in [draft-ietf-lamps-dilithium-certificates-07]([https://csrc.nist.gov/Projects/post-quantum-cryptography/faqs#Rdc7](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/))
+IETF variant of ML-DSA using externalMu using flow documented in [draft-ietf-lamps-dilithium-certificates-07](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/)
 
 
 ```mermaid
