@@ -124,7 +124,7 @@ sequenceDiagram
   Module A-->>-Application: return mu
   Application->>+Module B: ExternalMu-ML-DSA.Sign(sk, mu)
   rect rgb(191,223,255)
-    Module A->>+Module B: ML-DSA.sign_mu(sk,mu)
+    Module B->>+Module B: ML-DSA.sign_mu(sk,mu)
     Module B->>Module B: generate random rnd
     Module B->>Module B: ExternalMu-ML-DSA.Sign_internal(sk,mu,rnd)
   end
