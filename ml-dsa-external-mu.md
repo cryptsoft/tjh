@@ -8,6 +8,15 @@ Diagrams to support discussion about the differences between the NIST and IETF v
 Standard ML-DSA high level flow. No externalMu.
 
 ```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#93D0FF',
+      'primaryTextColor': '#000'
+    }
+  }
+}%%
 sequenceDiagram
   %% FIPS204 ML-DSA
   autonumber
@@ -29,6 +38,15 @@ sequenceDiagram
 Standard HashML-DSA high level flow. No externalMu.
 
 ```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#93D0FF',
+      'primaryTextColor': '#000'
+    }
+  }
+}%%
 sequenceDiagram
   %% FIPS204 ML-DSA
   autonumber
@@ -50,6 +68,15 @@ sequenceDiagram
 Standard ML-DSA high level flow with externalMu using flow documented in [NIST FAQ](https://csrc.nist.gov/Projects/post-quantum-cryptography/faqs#Rdc7)
 
 ```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#93D0FF',
+      'primaryTextColor': '#000'
+    }
+  }
+}%%
 sequenceDiagram
   %% FIPS204 NISTFAQ ML-DSA
   %% https://csrc.nist.gov/Projects/post-quantum-cryptography/faqs#Rdc7
@@ -76,6 +103,15 @@ sequenceDiagram
 Standard HashML-DSA high level flow with externalMu using flow documented in [NIST FAQ](https://csrc.nist.gov/Projects/post-quantum-cryptography/faqs#Rdc7)
 
 ```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#93D0FF',
+      'primaryTextColor': '#000'
+    }
+  }
+}%%
 sequenceDiagram
   %% FIPS204 NISTFAQ Hash-ML-DSA
   %% https://csrc.nist.gov/Projects/post-quantum-cryptography/faqs#Rdc7
@@ -103,6 +139,15 @@ IETF variant of ML-DSA using externalMu using flow documented in [draft-ietf-lam
 
 
 ```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#93D0FF',
+      'primaryTextColor': '#000'
+    }
+  }
+}%%
 sequenceDiagram
   %% FIPS204 IETF External MU ML-DSA
   %% https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/
