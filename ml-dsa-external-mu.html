@@ -1,0 +1,103 @@
+<h1 id="background">Background</h1>
+<p>Diagrams to support discussion about the differences between the NIST and IETF viewpoints on ML-DSA and <i>external Mu</i>.</p>
+<h1 id="fips-204-ml-dsa">FIPS 204 ML-DSA</h1>
+<p>Standard ML-DSA high level flow. No externalMu.</p>
+<pre><code class="mermaid language-mermaid">sequenceDiagram
+  %% FIPS204 ML-DSA
+  autonumber
+  actor Application
+  participant Module A as Module A
+
+  Application-&gt;&gt;+Module A: ML-DSA.Sign(sk,M,ctx)
+  Module A-&gt;&gt;+Module A: generate random rnd
+  Module A-&gt;&gt;+Module A: construct M'
+  rect rgb(191,223,255)
+    Module A-&gt;&gt;+Module A: ML-DSA.Sign_internal(sk,M',rnd)
+    Module A-&gt;&gt;+Module A: compute mu from tr and M'
+  end
+  Module A--&gt;&gt;-Application: return signature</code></pre>
+<h1 id="fips-204-hashml-dsa">FIPS 204 HashML-DSA</h1>
+<p>Standard HashML-DSA high level flow. No externalMu.</p>
+<pre><code class="mermaid language-mermaid">sequenceDiagram
+  %% FIPS204 ML-DSA
+  autonumber
+  actor Application
+  participant Module A as Module A
+
+  Application-&gt;&gt;+Module A: HashML-DSA.Sign(sk,M,ctx,PH)
+  Module A-&gt;&gt;+Module A: generate random rnd
+  Module A-&gt;&gt;+Module A: construct M'
+  rect rgb(191,223,255)
+    Module A-&gt;&gt;+Module A: ML-DSA.Sign_internal(sk,M',rnd)
+    Module A-&gt;&gt;+Module A: compute mu from tr and M'
+  end
+  Module A--&gt;&gt;-Application: return signature</code></pre>
+<h1 id="fips-204-nistfaq-ml-dsa">FIPS 204 NISTFAQ ML-DSA</h1>
+<p>Standard ML-DSA high level flow with<br />
+externalMu using flow documented in <br />
+<a href="https://csrc.nist.gov/Projects/post-quantum-cryptography/faqs#Rdc7">NIST FAQ</a></p>
+<pre><code class="mermaid language-mermaid">sequenceDiagram
+  %% FIPS204 NISTFAQ ML-DSA
+  %% https://csrc.nist.gov/Projects/post-quantum-cryptography/faqs#Rdc7
+  autonumber
+  actor Application
+  participant Module A as Module A&lt;br&gt;&lt;br&gt;(computes mu)
+  participant Module B as Module B&lt;br&gt;&lt;br&gt;(signing module)
+
+  Application-&gt;&gt;+Module A: ML-DSA.Sign(sk,M,ctx)
+  Module A-&gt;&gt;+Module A: construct M'
+  Module A-&gt;&gt;+Module A: compute tr from pk
+  Module A-&gt;&gt;+Module A: compute mu from tr and M'
+  rect rgb(191,223,255)
+    Module A-&gt;&gt;+Module B: ML-DSA.sign_mu(sk,mu)
+    Module B-&gt;&gt;Module B: generate random rnd
+    Module B-&gt;&gt;Module B: ML-DSA.Sign_internal_mu(sk,mu,rnd)
+    Module B--&gt;&gt;-Module A: return signature
+  end
+  Module A--&gt;&gt;-Application: return signature</code></pre>
+<h1 id="fips-204-nistfaq-hashml-dsa">FIPS 204 NISTFAQ HashML-DSA</h1>
+<p>Standard HashML-DSA high level flow with<br />
+externalMu using flow documented in <br />
+<a href="https://csrc.nist.gov/Projects/post-quantum-cryptography/faqs#Rdc7">NIST FAQ</a></p>
+<pre><code class="mermaid language-mermaid">sequenceDiagram
+  %% FIPS204 NISTFAQ Hash-ML-DSA
+  %% https://csrc.nist.gov/Projects/post-quantum-cryptography/faqs#Rdc7
+  autonumber
+  actor Application
+  participant Module A as Module A&lt;br&gt;&lt;br&gt;(computes mu)
+  participant Module B as Module B&lt;br&gt;&lt;br&gt;(signing module)
+
+  Application-&gt;&gt;+Module A: HashML-DSA.Sign(sk,M,ctx,PH)
+  Module A-&gt;&gt;+Module A: construct M'
+  Module A-&gt;&gt;+Module A: compute tr from pk
+  Module A-&gt;&gt;+Module A: compute mu from tr and M'
+  rect rgb(191,223,255)
+    Module A-&gt;&gt;+Module B: ML-DSA.sign_mu(sk,mu)
+    Module B-&gt;&gt;Module B: generate random rnd
+    Module B-&gt;&gt;Module B: ML-DSA.Sign_internal_mu(sk,mu,rnd)
+    Module B--&gt;&gt;-Module A: return signature
+  end
+  Module A--&gt;&gt;-Application: return signature</code></pre>
+<h1 id="fips-204-ietf-externalmu-ml-dsa">FIPS 204 IETF ExternalMu ML-DSA</h1>
+<p>IETF variant of ML-DSA using externalMu using flow documented in<br />
+<a href="https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/">draft-ietf-lamps-dilithium-certificates-07</a></p>
+<pre><code class="mermaid language-mermaid">sequenceDiagram
+  %% FIPS204 IETF External MU ML-DSA
+  %% https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/
+  autonumber
+  actor Application
+  participant Module A as Module A&lt;br&gt;&lt;br&gt;(computes mu)
+  participant Module B as Module B&lt;br&gt;&lt;br&gt;(signing module)
+
+  Application-&gt;&gt;+Module A: ExternalMu-ML-DSA.Prehash(pk, M, ctx)
+  Module A-&gt;&gt;+Module A: construct M'
+  Module A-&gt;&gt;+Module A: compute tr from pk
+  Module A-&gt;&gt;+Module A: compute mu from tr and M'
+  Module A--&gt;&gt;-Application: return mu
+  Application-&gt;&gt;+Module B: ExternalMu-ML-DSA.Sign(sk, mu)
+  rect rgb(191,223,255)
+    Module A-&gt;&gt;+Module B: ML-DSA.sign_mu(sk,mu)
+    Module B-&gt;&gt;Module B: generate random rnd
+    Module B-&gt;&gt;Module B: ExternalMu-ML-DSA.Sign_internal(sk,mu,rnd)
+  end
+  Module B--&gt;&gt;-Application: return signature</code></pre>
