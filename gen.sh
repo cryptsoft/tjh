@@ -21,6 +21,7 @@ MMDC="mmdc"
 
 $SHOWDOWN -i ml-dsa-external-mu-edit.md -o ml-dsa-external-mu.html
 #$MMDC -t default -b transparent -i ml-dsa-external-mu-edit.md -o ml-dsa-external-mu.md
+$MMDC -i ml-dsa-external-mu-edit.md -o ml-dsa-external-mu.md -e svg
 $MMDC -i ml-dsa-external-mu-edit.md -o ml-dsa-external-mu.md -e png
 
 
