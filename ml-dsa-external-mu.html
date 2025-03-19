@@ -100,3 +100,26 @@ externalMu using flow documented in <br />
     Module B-&gt;&gt;Module B: ExternalMu-ML-DSA.Sign_internal(sk,mu,rnd)
   end
   Module B--&gt;&gt;-Application: return signature</code></pre>
+<h1 id="fips-204-ietf-externalmu-ml-dsa-in-reality">FIPS 204 IETF ExternalMu ML-DSA In Reality</h1>
+<p>IETF variant of ML-DSA using externalMu using what <br />
+the IETF participants expect to see. There is no special<br />
+module interface for externalMu calculation - it is just a<br />
+standard Hash usage. There are not two modules - only one.</p>
+<pre><code class="mermaid language-mermaid">sequenceDiagram
+  %% FIPS204 IETF External MU ML-DSA In Reality
+  %% https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/
+  autonumber
+  actor Application
+  participant Module A as Module A&lt;br&gt;&lt;br&gt;(computes Hash, performs signing)
+
+  Module A-&gt;&gt;+Module A: construct M'
+  Module A-&gt;&gt;+Module A: compute tr from pk
+  Module A-&gt;&gt;+Module A: construct BytesToHash = BytesToBits(tr)||M' 
+  Application-&gt;&gt;+Module A: Hash(BytesToHash,64)
+  Module A--&gt;&gt;-Application: return mu
+  Application-&gt;&gt;+Module A: ExternalMu-ML-DSA.Sign(sk, mu)
+  rect rgb(191,223,255)
+    Module A-&gt;&gt;Module A: generate random rnd
+    Module A-&gt;&gt;Module A: ExternalMu-ML-DSA.Sign_internal(sk,mu,rnd)
+  end
+  Module A--&gt;&gt;-Application: return signature</code></pre>

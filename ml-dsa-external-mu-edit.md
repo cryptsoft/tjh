@@ -130,3 +130,34 @@ sequenceDiagram
   Module B-->>-Application: return signature
   
 ```  
+
+# FIPS 204 IETF ExternalMu ML-DSA In Reality
+
+IETF variant of ML-DSA using externalMu using what 
+the IETF participants expect to see. There is no special
+module interface for externalMu calculation - it is just a
+standard Hash usage. There are not two modules - only one.
+
+
+```mermaid
+sequenceDiagram
+  %% FIPS204 IETF External MU ML-DSA In Reality
+  %% https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/
+  autonumber
+  actor Application
+  participant Module A as Module A<br><br>(computes Hash, performs signing)
+  
+  Module A->>+Module A: construct M'
+  Module A->>+Module A: compute tr from pk
+  Module A->>+Module A: construct BytesToHash = BytesToBits(tr)||M' 
+  Application->>+Module A: Hash(BytesToHash,64)
+  Module A-->>-Application: return mu
+  Application->>+Module A: ExternalMu-ML-DSA.Sign(sk, mu)
+  rect rgb(191,223,255)
+    Module A->>Module A: generate random rnd
+    Module A->>Module A: ExternalMu-ML-DSA.Sign_internal(sk,mu,rnd)
+  end
+  Module A-->>-Application: return signature
+  
+```  
+

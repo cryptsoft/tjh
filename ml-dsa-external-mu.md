@@ -39,3 +39,13 @@ IETF variant of ML-DSA using externalMu using flow documented in
 
 
 ![diagram](./ml-dsa-external-mu-5.png)
+
+# FIPS 204 IETF ExternalMu ML-DSA In Reality
+
+IETF variant of ML-DSA using externalMu using what 
+the IETF participants expect to see. There is no special
+module interface for externalMu calculation - it is just a
+standard Hash usage. There are not two modules - only one.
+
+
+![diagram](./ml-dsa-external-mu-6.png)
