@@ -147,9 +147,9 @@ sequenceDiagram
   actor Application
   participant Module A as Module A<br><br>(computes Hash, performs signing)
   
-  Module A->>+Module A: construct M'
-  Module A->>+Module A: compute tr from pk
-  Module A->>+Module A: construct BytesToHash = BytesToBits(tr)||M' 
+  Application->>+Application: construct M'
+  Application->>+Application: compute tr from pk
+  Application->>+Application: construct BytesToHash = BytesToBits(tr)||M' 
   Application->>+Module A: Hash(BytesToHash,64)
   Module A-->>-Application: return mu
   Application->>+Module A: ExternalMu-ML-DSA.Sign(sk, mu)

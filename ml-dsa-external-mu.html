@@ -112,9 +112,9 @@ standard Hash usage. There are not two modules - only one.</p>
   actor Application
   participant Module A as Module A&lt;br&gt;&lt;br&gt;(computes Hash, performs signing)
 
-  Module A-&gt;&gt;+Module A: construct M'
-  Module A-&gt;&gt;+Module A: compute tr from pk
-  Module A-&gt;&gt;+Module A: construct BytesToHash = BytesToBits(tr)||M' 
+  Application-&gt;&gt;+Application: construct M'
+  Application-&gt;&gt;+Application: compute tr from pk
+  Application-&gt;&gt;+Application: construct BytesToHash = BytesToBits(tr)||M' 
   Application-&gt;&gt;+Module A: Hash(BytesToHash,64)
   Module A--&gt;&gt;-Application: return mu
   Application-&gt;&gt;+Module A: ExternalMu-ML-DSA.Sign(sk, mu)
