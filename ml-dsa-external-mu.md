@@ -2,6 +2,10 @@
 
 Diagrams to support discussion about the differences between the NIST and IETF viewpoints on ML-DSA and <i>external Mu</i>.
 
+Note with the publication 
+of [FAQ2](https://csrc.nist.gov/csrc/media/Projects/post-quantum-cryptography/documents/faq/fips204-sec6-03192025.pdf), 
+NIST is allowing **all** of the externalMu approaches that are noted here.
+
 
 # FIPS 204 ML-DSA
 
